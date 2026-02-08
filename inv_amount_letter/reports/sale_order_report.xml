@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inv_report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <!-- Add amount in letters after the total section -->
+        <xpath expr="//div[hasclass('clearfix')]" position="inside">
+            <div class="mt-3" t-if="doc.amount_letter">
+                <p>
+                    <strong>Arrêté le présent devis à la somme de :</strong>
+                    <span t-esc="doc.amount_letter"/>
+                </p>
+            </div>
+        </xpath>
+        
+        <xpath expr="//span[@t-field='line.product_uom']" position="replace">
+            <!-- Unit of measure removed - only quantity value is displayed -->
+        </xpath>
+
+    </template>
+</odoo>

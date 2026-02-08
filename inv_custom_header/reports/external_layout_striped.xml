@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inv_external_layout_striped" inherit_id="web.external_layout_striped">
+        <!-- Add Services Section to header -->
+        <xpath expr="." position="inside">
+            <!-- Get services using helper method -->
+            <t t-set="services_list" t-value="env['res.company'].get_company_services_for_report(company, o)"/>
+
+            <!-- Services Section - Right side, positioned absolument -->
+            <div style="position: absolute; right: 20px; top: 20px; text-align: right; z-index: 10;">
+                <t t-if="services_list and len(services_list) > 0">
+                    <div style="font-size: 11px; line-height: 1.8; color: #6c757d; text-transform: uppercase; font-weight: 500;">
+                        <t t-foreach="services_list" t-as="service">
+                            <div t-esc="service" style="margin-bottom: 2px;"/>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+
